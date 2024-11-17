@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: BankInk
+    
+  jpa:
+      hibernate.ddl-auto: update
+      database: oracle
+      database-platform: org.hibernate.dialect.OracleDialect
+  datasource:
+      driver-class-name: oracle.jdbc.OracleDriver
+      url: jdbc:oracle:thin:@//192.168.0.22:1521/wanted
+      password: Efyse_20Dev
+      username: wanteddev
+      
+bancos:
+  banco1: 123456
+  banco2: 456789
+  banco3: 789123
