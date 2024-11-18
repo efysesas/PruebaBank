@@ -1,0 +1,8 @@
+runtime: java21
+instance_class: F2
+
+env_variables:
+  SPRING_PROFILES_ACTIVE: prod
+  SPRING_DATASOURCE_URL: jdbc:mysql://35.188.179.248:3306/bank?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+  SPRING_DATASOURCE_USERNAME: bank
+  SPRING_DATASOURCE_PASSWORD: bank12345

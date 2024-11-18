@@ -9,5 +9,10 @@ spring:
   datasource:
       driver-class-name: oracle.jdbc.OracleDriver
       url: jdbc:oracle:thin:@//localhost:1521/bd
-      password: 
-      username: 
+      password: bank12345
+      username: bank
+      
+bancos:
+  banco1: 123456
+  banco2: 456789
+  banco3: 789123

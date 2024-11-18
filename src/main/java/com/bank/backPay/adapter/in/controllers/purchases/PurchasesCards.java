@@ -14,6 +14,12 @@ import com.bank.backPay.adapter.in.dto.Purchase;
 import com.bank.backPay.adapter.out.entity.PurchaseEntity;
 import com.bank.backPay.aplication.ports.in.PurchaseServiceIn;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/transaction")
 public class PurchasesCards {
@@ -23,7 +29,17 @@ public class PurchasesCards {
     private PurchaseServiceIn purchaseServiceIn;
 
     @PostMapping("/purchase")
-    public ResponseEntity<Object> purchaseCard(@RequestBody Purchase purchase) {
+    @Operation(summary = "solicitud de compra", description = "solicitud de compra")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "OK", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "Solicitud inválida", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "404", description = "Recurso no encontrado", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "500", description = "Error interno del servidor", content = {
+					@Content(mediaType = "application/json") }) })
+    public ResponseEntity<Object> purchaseCard(@Valid @RequestBody Purchase purchase) {
         try {
             PurchaseEntity result = purchaseServiceIn.purchaseCard(purchase);
             return ResponseEntity.status(HttpStatus.CREATED).body(result);
@@ -33,6 +49,16 @@ public class PurchasesCards {
     }
 
     @GetMapping("/{transactionId}")
+    @Operation(summary = "consulta de compra", description = "consulta de compra")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "OK", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "Solicitud inválida", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "404", description = "Recurso no encontrado", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "500", description = "Error interno del servidor", content = {
+					@Content(mediaType = "application/json") }) })
     public ResponseEntity<Object> getPurchaseCard(@PathVariable String transactionId) {
         try {
             PurchaseEntity result = purchaseServiceIn.getPurchaseByTransactionId(transactionId);
@@ -43,7 +69,17 @@ public class PurchasesCards {
     }
 
     @PostMapping("/anulation")
-    public ResponseEntity<Object> anulatePurchase(@RequestBody Purchase purchase) {
+    @Operation(summary = "anulacion de compra", description = "anulacion de compra")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "OK", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "400", description = "Solicitud inválida", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "404", description = "Recurso no encontrado", content = {
+					@Content(mediaType = "application/json") }),
+			@ApiResponse(responseCode = "500", description = "Error interno del servidor", content = {
+					@Content(mediaType = "application/json") }) })
+    public ResponseEntity<Object> anulatePurchase(@Valid @RequestBody Purchase purchase) {
         try {
             PurchaseEntity result = purchaseServiceIn.anulatePurchase(purchase);
             return ResponseEntity.ok(result);
